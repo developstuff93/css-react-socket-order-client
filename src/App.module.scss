@@ -1,0 +1,17 @@
+@import "./GlobalStyles.scss";
+
+.Root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.Main {
+  flex: 1;
+  overflow-x: auto;
+  padding: 2rem;
+
+  h2 {
+    color: $white;
+  }
+}
