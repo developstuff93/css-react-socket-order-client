@@ -7,7 +7,7 @@ export default function Controller({
   total,
   perPage,
   curPage,
-  updatePage,
+  updateCurPage,
   updatePerPage,
 }) {
   const totalPage = useMemo(() => {
@@ -18,14 +18,14 @@ export default function Controller({
       <PerPageSelector
         curPage={curPage}
         perPage={perPage}
-        updatePage={updatePage}
+        updateCurPage={updateCurPage}
         updatePerPage={updatePerPage}
       />
       <Paginator
         totalPage={totalPage}
         curPage={curPage}
         perPage={perPage}
-        updatePage={updatePage}
+        updateCurPage={updateCurPage}
       />
     </div>
   );

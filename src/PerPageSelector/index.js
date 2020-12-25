@@ -1,12 +1,17 @@
 import React from "react";
 
-export default function Selector({ curPage, perPage, updatePage, updatePerPage }) {
+export default function Selector({
+  curPage,
+  perPage,
+  updateCurPage,
+  updatePerPage,
+}) {
   const options = [...Array(10).keys()].map((num) => (num + 1) * 5);
   const onSelectChange = (e) => {
     const newPerPage = e.target.value;
     updatePerPage(newPerPage);
-    const targetPage = Math.floor(curPage * perPage / newPerPage);
-    updatePage(targetPage);
+    const targetPage = Math.floor((curPage * perPage) / newPerPage);
+    updateCurPage(targetPage);
   };
 
   return (
