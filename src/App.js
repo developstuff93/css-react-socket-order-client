@@ -34,6 +34,7 @@ function App() {
       }
     });
     setOrders(updatedOrders);
+    /* eslint-disable  react-hooks/exhaustive-deps */
   }, [newEvents]);
 
   return (
