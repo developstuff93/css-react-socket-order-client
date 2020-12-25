@@ -48,11 +48,11 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
         {"<"}
       </button>
       {from > 0 && (
-        <button onClick={() => updateCurPage(curPage - 1)}>{"..."}</button>
+        <button onClick={() => updateCurPage(from)}>{"..."}</button>
       )}
       {renderPageButtons()}
       {to < totalPage && (
-        <button onClick={() => updateCurPage(curPage + 1)}>{"..."}</button>
+        <button onClick={() => updateCurPage(to - 1)}>{"..."}</button>
       )}
       <button
         disabled={isNextButtonDisabled}
