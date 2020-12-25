@@ -17,10 +17,6 @@ export default function Orders({ orders }) {
     return orders;
   }, [orders, filterPrice]);
 
-  const total = useMemo(() => {
-    return filteredOrders.length;
-  }, [filteredOrders]);
-
   const renderableOrders = useMemo(() => {
     const renderObjects = [];
     for (let i = 0; i < perPage; i++) {
@@ -35,13 +31,15 @@ export default function Orders({ orders }) {
   return (
     <div>
       <FilterBar
+        totalLength={orders.length}
+        filteredLength={filteredOrders.length}
         price={filterPrice}
         updateFilter={setFilterPrice}
         updateCurPage={setCurPage}
       />
       <OrdersTable orders={renderableOrders} />
       <TableController
-        total={total}
+        total={filteredOrders.length}
         curPage={curPage}
         perPage={perPage}
         updateCurPage={setCurPage}

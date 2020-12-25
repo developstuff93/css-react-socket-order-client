@@ -5,7 +5,7 @@ const KEY_CODE = {
   9: 57,
 };
 
-export default function FilterBar({ price, updateFilter, updateCurPage }) {
+export default function FilterBar({ totalLength, filteredLength, price, updateFilter, updateCurPage }) {
   const onKeyDown = (e) => {
     const keyCode = e.which ? e.which : e.keyCode;
     if (keyCode < KEY_CODE[0] || keyCode > KEY_CODE[9]) {
@@ -21,6 +21,8 @@ export default function FilterBar({ price, updateFilter, updateCurPage }) {
 
   return (
     <div>
+      <span>{price && `Matched Count: ${filteredLength} / `}</span>
+      <span>{`Total Count: ${totalLength}`}</span>
       <input
         type="number"
         onKeyPress={onKeyDown}

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Selector({
+export default function PerPageSelector({
   curPage,
   perPage,
   updateCurPage,
