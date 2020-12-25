@@ -25,16 +25,25 @@ export default function OrdersTable({ orders }) {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
-            <tr key={order.id}>
-              <td>{order.id}</td>
-              <td>{order.event_name}</td>
-              <td>{order.price}</td>
-              <td>{order.item}</td>
-              <td>{order.customer}</td>
-              <td>{order.destination}</td>
+          {!orders.length ? (
+            <tr>
+              <td colSpan={6}>No Orders</td>
             </tr>
-          ))}
+          ) : (
+            orders.length &&
+            orders.map((order) => (
+              <tr key={order.id}>
+                <td>{order.id}</td>
+                <td>{order.event_name}</td>
+                <td>{order.price}</td>
+                <td>{order.item}</td>
+                <td>{order.customer}</td>
+                <td style={{ textAlign: "left", paddingLeft: "40px" }}>
+                  {order.destination}
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

@@ -2,28 +2,40 @@
 
 .Root {
   width: 100%;
-  height: 500px;
+  max-height: 442px;
   margin: 2rem 0;
   overflow: auto;
+  border: 1px solid $gray;
+  border-radius: 5px;
+
+  @media screen and (max-width: $small) {
+    margin: 1rem 0;
+    max-height: 402px;
+  }
 }
 
 .Table {
   width: 100%;
   min-width: 1250px;
   border-collapse: collapse;
-  border: 1px solid grey;
-  border-radius: 5px;
 
   th {
     text-transform: capitalize;
     position: sticky;
     top: 0;
     z-index: 1;
-    background: white;
+    background-color: $light-gray;
   }
 
   tr {
-    outline: 1px solid grey;
     height: 40px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-dark;
+    }
+  }
+
+  td {
+    text-align: center;
   }
 }

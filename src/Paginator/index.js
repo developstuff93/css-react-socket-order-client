@@ -47,11 +47,12 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
     );
   }, [from, to, curPage, updateCurPage]);
 
+  if (totalPage === 0) {
+    return <></>;
+  }
+
   return (
     <div className={styles.Root}>
-      <button disabled={isPrevButtonDisabled} onClick={() => updateCurPage(0)}>
-        {"<<"}
-      </button>
       <button
         disabled={isPrevButtonDisabled}
         onClick={() => updateCurPage(curPage - 1)}
@@ -59,23 +60,17 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
         {"<"}
       </button>
       {!isPrevButtonDisabled && (
-        <button className={styles.ButtonMore} onClick={() => updateCurPage(from)} />
+        <button className={styles.ButtonMore} onClick={() => updateCurPage(curPage - 1)} />
       )}
       {renderPageButtons()}
       {!isNextButtonDisabled && (
-        <button className={styles.ButtonMore} onClick={() => updateCurPage(to - 1)} />
+        <button className={styles.ButtonMore} onClick={() => updateCurPage(curPage + 1)} />
       )}
       <button
         disabled={isNextButtonDisabled}
         onClick={() => updateCurPage(curPage + 1)}
       >
         {">"}
-      </button>
-      <button
-        disabled={isNextButtonDisabled}
-        onClick={() => updateCurPage(totalPage - 1)}
-      >
-        {">>"}
       </button>
     </div>
   );

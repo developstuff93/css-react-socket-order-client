@@ -1,9 +1,13 @@
 @import "../GlobalStyles.scss";
 
 .Root {
+  height: 32px;
   min-width: 200px;
+  border: 1px solid $light-dark;
+  border-radius: 3px;
 
   @media screen and (max-width: $small) {
     width: 100%;
+    margin-bottom: 1rem;
   }
 }
