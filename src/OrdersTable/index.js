@@ -1,30 +1,42 @@
 import React from "react";
 
+import styles from "./OrdersTable.module.scss";
+
 export default function OrdersTable({ orders }) {
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>customer</th>
-          <th>destination</th>
-          <th>event_name</th>
-          <th>id</th>
-          <th>item</th>
-          <th>price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {orders.map((order) => (
-          <tr key={order.id}>
-            <th>{order.customer}</th>
-            <th>{order.destination}</th>
-            <th>{order.event_name}</th>
-            <th>{order.id}</th>
-            <th>{order.item}</th>
-            <th>{order.price}</th>
+    <div className={styles.Root}>
+      <table className={styles.Table}>
+        <colgroup>
+          <col span="1" style={{ width: "10%" }} />
+          <col span="1" style={{ width: "10%" }} />
+          <col span="1" style={{ width: "8%" }} />
+          <col span="1" style={{ width: "20%" }} />
+          <col span="1" style={{ width: "12%" }} />
+          <col span="1" style={{ width: "40%" }} />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>event_name</th>
+            <th>price</th>
+            <th>item</th>
+            <th>customer</th>
+            <th>destination</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {orders.map((order) => (
+            <tr key={order.id}>
+              <td>{order.id}</td>
+              <td>{order.event_name}</td>
+              <td>{order.price}</td>
+              <td>{order.item}</td>
+              <td>{order.customer}</td>
+              <td>{order.destination}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }

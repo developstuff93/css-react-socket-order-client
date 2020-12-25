@@ -3,6 +3,8 @@ import React, { useMemo } from "react";
 import Paginator from "../Paginator";
 import PerPageSelector from "../PerPageSelector";
 
+import styles from './TableController.module.scss';
+
 export default function TableController({
   total,
   perPage,
@@ -14,7 +16,7 @@ export default function TableController({
     return Math.ceil(total / perPage);
   }, [perPage, total]);
   return (
-    <div>
+    <div className={styles.Root}>
       <PerPageSelector
         curPage={curPage}
         perPage={perPage}

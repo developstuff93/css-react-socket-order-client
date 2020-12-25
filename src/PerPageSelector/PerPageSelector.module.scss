@@ -1,0 +1,9 @@
+@import "../GlobalStyles.scss";
+
+.Root {
+  min-width: 200px;
+
+  @media screen and (max-width: $small) {
+    width: 100%;
+  }
+}

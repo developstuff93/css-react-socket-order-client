@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 
+import styles from './Paginator.module.scss';
+
 export default function Paginator({ totalPage, curPage, updateCurPage }) {
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(0);
@@ -34,11 +36,11 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
       <>
         {visiblePages.map((page) => (
           <button
-            className={page === curPage && "selected"}
+            className={page === curPage && styles.ButtonSelected}
             key={page}
             onClick={() => updateCurPage(page)}
           >
-            {page}
+            {page + 1}
           </button>
         ))}
       </>
@@ -46,7 +48,7 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
   }, [from, to, curPage, updateCurPage]);
 
   return (
-    <div>
+    <div className={styles.Root}>
       <button disabled={isPrevButtonDisabled} onClick={() => updateCurPage(0)}>
         {"<<"}
       </button>
@@ -57,11 +59,11 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
         {"<"}
       </button>
       {!isPrevButtonDisabled && (
-        <button onClick={() => updateCurPage(from)}>{"..."}</button>
+        <button className={styles.ButtonMore} onClick={() => updateCurPage(from)} />
       )}
       {renderPageButtons()}
       {!isNextButtonDisabled && (
-        <button onClick={() => updateCurPage(to - 1)}>{"..."}</button>
+        <button className={styles.ButtonMore} onClick={() => updateCurPage(to - 1)} />
       )}
       <button
         disabled={isNextButtonDisabled}

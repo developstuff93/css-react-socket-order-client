@@ -4,6 +4,8 @@ import OrdersTable from "../OrdersTable";
 import TableController from "../TableController";
 import FilterBar from "../FilterBar";
 
+import styles from './Orders.module.scss';
+
 export default function Orders({ orders }) {
   const [filterPrice, setFilterPrice] = useState("");
   const [curPage, setCurPage] = useState(0);
@@ -29,7 +31,7 @@ export default function Orders({ orders }) {
   }, [curPage, perPage, filteredOrders]);
 
   return (
-    <div>
+    <div className={styles.Root}>
       <FilterBar
         totalLength={orders.length}
         filteredLength={filteredOrders.length}
