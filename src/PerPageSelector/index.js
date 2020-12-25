@@ -6,7 +6,7 @@ export default function PerPageSelector({
   updateCurPage,
   updatePerPage,
 }) {
-  const options = [...Array(10).keys()].map((num) => (num + 1) * 5);
+  const options = [10, 25, 50, 100];
   const onSelectChange = (e) => {
     const newPerPage = e.target.value;
     updatePerPage(newPerPage);

@@ -21,14 +21,16 @@ export default function FilterBar({ totalLength, filteredLength, price, updateFi
 
   return (
     <div>
-      <span>{price && `Matched Count: ${filteredLength} / `}</span>
-      <span>{`Total Count: ${totalLength}`}</span>
       <input
         type="number"
         onKeyPress={onKeyDown}
         onChange={onChange}
         value={price}
       />
+      <div>
+        <span>{price && `Matched Count: ${filteredLength} / `}</span>
+        <span>{`Total Count: ${totalLength}`}</span>
+      </div>
     </div>
   );
 }

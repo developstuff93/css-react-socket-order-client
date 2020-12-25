@@ -5,36 +5,45 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
   const [to, setTo] = useState(0);
 
   useEffect(() => {
-    const newFrom = Math.min(
-      Math.max(curPage - 2, 0),
-      Math.max(curPage - 1, 0),
-      curPage
-    );
-    const newTo = Math.min(newFrom + 5, totalPage);
+    let newFrom, newTo;
+    if (curPage < 3) {
+      newFrom = 0;
+      newTo = Math.min(newFrom + 5, totalPage);
+    } else if (curPage > totalPage - 3) {
+      newTo = totalPage;
+      newFrom = Math.max(newTo - 5, 0);
+    } else {
+      newFrom = curPage - 2;
+      newTo = newFrom + 5;
+    }
     setFrom(newFrom);
     setTo(newTo);
   }, [curPage, totalPage]);
 
   const isPrevButtonDisabled = useMemo(() => {
-    return curPage < 1;
-  }, [curPage]);
+    return from < 1;
+  }, [from]);
 
   const isNextButtonDisabled = useMemo(() => {
-    return curPage > totalPage - 1;
-  }, [curPage, totalPage]);
+    return to > totalPage - 1;
+  }, [to, totalPage]);
 
   const renderPageButtons = useCallback(() => {
     const visiblePages = [...Array(to - from).keys()].map((num) => num + from);
     return (
       <>
         {visiblePages.map((page) => (
-          <button key={page} onClick={() => updateCurPage(page)}>
+          <button
+            className={page === curPage && "selected"}
+            key={page}
+            onClick={() => updateCurPage(page)}
+          >
             {page}
           </button>
         ))}
       </>
     );
-  }, [from, to, updateCurPage]);
+  }, [from, to, curPage, updateCurPage]);
 
   return (
     <div>
@@ -47,11 +56,11 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
       >
         {"<"}
       </button>
-      {from > 0 && (
+      {!isPrevButtonDisabled && (
         <button onClick={() => updateCurPage(from)}>{"..."}</button>
       )}
       {renderPageButtons()}
-      {to < totalPage && (
+      {!isNextButtonDisabled && (
         <button onClick={() => updateCurPage(to - 1)}>{"..."}</button>
       )}
       <button
