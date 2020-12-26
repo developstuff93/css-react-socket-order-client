@@ -1,12 +1,13 @@
 @import "./GlobalStyles.scss";
 
 .Root {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .Main {
+  display: flex;
   flex: 1;
   overflow-x: auto;
   padding: 2rem;

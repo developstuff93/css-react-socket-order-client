@@ -2,11 +2,10 @@
 
 .Root {
   width: 100%;
-  max-height: 442px;
   margin: 2rem 0;
   overflow: auto;
   border: 1px solid $gray;
-  border-radius: 5px;
+  border-radius: 2px;
 
   @media screen and (max-width: $small) {
     margin: 1rem 0;

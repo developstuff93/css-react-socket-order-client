@@ -36,7 +36,7 @@ export default function Orders({ orders }) {
         totalLength={orders.length}
         filteredLength={filteredOrders.length}
         price={filterPrice}
-        updateFilter={setFilterPrice}
+        updatePriceFilter={setFilterPrice}
         updateCurPage={setCurPage}
       />
       <OrdersTable orders={renderableOrders} />

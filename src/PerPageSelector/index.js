@@ -18,12 +18,20 @@ export default function PerPageSelector({
   };
 
   return (
-    <select className={styles.Root} value={perPage} onChange={onSelectChange}>
-      {PER_PAGE_OPTIONS.map((option) => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
+    <div className={styles.Root}>
+      <label for="per-page-selector">Orders Per Page: </label>
+      <select
+        id="per-page-selector"
+        className={styles.Selector}
+        value={perPage}
+        onChange={onSelectChange}
+      >
+        {PER_PAGE_OPTIONS.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }

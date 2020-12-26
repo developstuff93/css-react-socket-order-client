@@ -1,51 +1,68 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
+import cx from "classnames";
 
-import styles from './Paginator.module.scss';
+import styles from "./Paginator.module.scss";
 
 export default function Paginator({ totalPage, curPage, updateCurPage }) {
-  const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(0);
+  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
-  useEffect(() => {
-    let newFrom, newTo;
-    if (curPage < 3) {
-      newFrom = 0;
-      newTo = Math.min(newFrom + 5, totalPage);
-    } else if (curPage > totalPage - 3) {
-      newTo = totalPage;
-      newFrom = Math.max(newTo - 5, 0);
+  const sequenceArrayGenerator = (from, to) => {
+    return [...Array(to - from).keys()].map((num) => num + from);
+  };
+
+  const buttonsStatus = useMemo(() => {
+    const positions = [];
+    if (totalPage < 8) {
+      // < 1 2 3 4 5 6 7 >
+      positions.push(...sequenceArrayGenerator(0, totalPage));
+      setPrevBtnDisabled(true);
+      setNextBtnDisabled(true);
+    } else if (curPage < 4) {
+      // < 1 2 3 4 5 ... 8 >
+      positions.push(...sequenceArrayGenerator(0, 5), "more", totalPage - 1);
+      setPrevBtnDisabled(true);
+      setNextBtnDisabled(false);
+    } else if (curPage >= totalPage - 4) {
+      // < 1 ... 4 5 6 7 8 >
+      positions.push(
+        0,
+        "more",
+        ...sequenceArrayGenerator(totalPage - 5, totalPage)
+      );
+      setPrevBtnDisabled(false);
+      setNextBtnDisabled(true);
     } else {
-      newFrom = curPage - 2;
-      newTo = newFrom + 5;
+      // < 1 ... 4 5 6 ... 7 >
+      positions.push(
+        0,
+        "more",
+        ...sequenceArrayGenerator(curPage - 1, curPage + 2),
+        "more",
+        totalPage - 1
+      );
+      setPrevBtnDisabled(false);
+      setNextBtnDisabled(false);
     }
-    setFrom(newFrom);
-    setTo(newTo);
+    return positions;
   }, [curPage, totalPage]);
 
-  const isPrevButtonDisabled = useMemo(() => {
-    return from < 1;
-  }, [from]);
-
-  const isNextButtonDisabled = useMemo(() => {
-    return to > totalPage - 1;
-  }, [to, totalPage]);
-
-  const renderPageButtons = useCallback(() => {
-    const visiblePages = [...Array(to - from).keys()].map((num) => num + from);
-    return (
-      <>
-        {visiblePages.map((page) => (
-          <button
-            className={page === curPage && styles.ButtonSelected}
-            key={page}
-            onClick={() => updateCurPage(page)}
-          >
-            {page + 1}
-          </button>
-        ))}
-      </>
-    );
-  }, [from, to, curPage, updateCurPage]);
+  const renderButton = (status) => {
+    if (status === "more") {
+      return <button className={cx(styles.Button, styles.ButtonMore)} />;
+    } else if (!isNaN(status)) {
+      return (
+        <button
+          className={cx(styles.Button, {
+            [styles.ButtonSelected]: curPage === status,
+          })}
+          onClick={() => updateCurPage(status)}
+        >
+          {status + 1}
+        </button>
+      );
+    }
+  };
 
   if (totalPage === 0) {
     return <></>;
@@ -54,20 +71,16 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
   return (
     <div className={styles.Root}>
       <button
-        disabled={isPrevButtonDisabled}
+        className={styles.Button}
+        disabled={prevBtnDisabled}
         onClick={() => updateCurPage(curPage - 1)}
       >
         {"<"}
       </button>
-      {!isPrevButtonDisabled && (
-        <button className={styles.ButtonMore} onClick={() => updateCurPage(curPage - 1)} />
-      )}
-      {renderPageButtons()}
-      {!isNextButtonDisabled && (
-        <button className={styles.ButtonMore} onClick={() => updateCurPage(curPage + 1)} />
-      )}
+      {buttonsStatus.map((status) => renderButton(status))}
       <button
-        disabled={isNextButtonDisabled}
+        className={styles.Button}
+        disabled={nextBtnDisabled}
         onClick={() => updateCurPage(curPage + 1)}
       >
         {">"}

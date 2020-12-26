@@ -11,7 +11,7 @@ export default function FilterBar({
   totalLength,
   filteredLength,
   price,
-  updateFilter,
+  updatePriceFilter,
   updateCurPage,
 }) {
   const onKeyDown = (e) => {
@@ -21,9 +21,8 @@ export default function FilterBar({
     }
   };
 
-  const onChange = (e) => {
-    const price = e.target.value;
-    updateFilter(price);
+  const updateFilter = (newPrice) => {
+    updatePriceFilter(newPrice);
     updateCurPage(0);
   };
 
@@ -35,9 +34,10 @@ export default function FilterBar({
           id="price-filter"
           type="number"
           onKeyPress={onKeyDown}
-          onChange={onChange}
+          onChange={(e) => updateFilter(e.target.value)}
           value={price}
         />
+        {price && <button onClick={() => updateFilter("")}>&times;</button>}
       </div>
       <div className={styles.MetaInfo}>
         <span>{price && `Matched Count: ${filteredLength} / `}</span>
