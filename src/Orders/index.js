@@ -4,7 +4,7 @@ import OrdersTable from "../OrdersTable";
 import TableController from "../TableController";
 import FilterBar from "../FilterBar";
 
-import styles from './Orders.module.scss';
+import styles from "./Orders.module.scss";
 
 export default function Orders({ orders }) {
   const [filterPrice, setFilterPrice] = useState("");

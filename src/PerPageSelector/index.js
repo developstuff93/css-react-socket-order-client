@@ -19,7 +19,7 @@ export default function PerPageSelector({
 
   return (
     <div className={styles.Root}>
-      <label for="per-page-selector">Orders Per Page: </label>
+      <label htmlFor="per-page-selector">Orders Per Page: </label>
       <select
         id="per-page-selector"
         className={styles.Selector}

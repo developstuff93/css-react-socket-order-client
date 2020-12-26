@@ -38,7 +38,7 @@
   }
 }
 
-.ButtonSelected {
+.Selected {
   background-color: $main-button;
 
   &:hover {
@@ -46,7 +46,7 @@
   }
 }
 
-.ButtonMore {
+.More {
   cursor: default;
   pointer-events: none;
   border: none;

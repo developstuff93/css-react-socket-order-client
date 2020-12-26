@@ -29,7 +29,7 @@ export default function FilterBar({
   return (
     <div className={styles.Root}>
       <div className={styles.FilterBar}>
-        <label for="price-filter">Search: </label>
+        <label htmlFor="price-filter">Search: </label>
         <input
           id="price-filter"
           type="number"

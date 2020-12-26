@@ -47,14 +47,15 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
     return positions;
   }, [curPage, totalPage]);
 
-  const renderButton = (status) => {
+  const renderButton = (status, index) => {
     if (status === "more") {
-      return <button className={cx(styles.Button, styles.ButtonMore)} />;
+      return <button key={index} className={cx(styles.Button, styles.More)} />;
     } else if (!isNaN(status)) {
       return (
         <button
+          key={index}
           className={cx(styles.Button, {
-            [styles.ButtonSelected]: curPage === status,
+            [styles.Selected]: curPage === status,
           })}
           onClick={() => updateCurPage(status)}
         >
@@ -77,7 +78,7 @@ export default function Paginator({ totalPage, curPage, updateCurPage }) {
       >
         {"<"}
       </button>
-      {buttonsStatus.map((status) => renderButton(status))}
+      {buttonsStatus.map((status, index) => renderButton(status, index))}
       <button
         className={styles.Button}
         disabled={nextBtnDisabled}

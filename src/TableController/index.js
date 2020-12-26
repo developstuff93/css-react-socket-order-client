@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import Paginator from "../Paginator";
 import PerPageSelector from "../PerPageSelector";
 
-import styles from './TableController.module.scss';
+import styles from "./TableController.module.scss";
 
 export default function TableController({
   total,
