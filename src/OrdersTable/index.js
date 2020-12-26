@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./OrdersTable.module.scss";
 
-export default function OrdersTable({ orders }) {
+export default function OrdersTable({ orders, isFiltered }) {
   return (
     <div className={styles.Root}>
       <table className={styles.Table}>
@@ -25,27 +25,25 @@ export default function OrdersTable({ orders }) {
           </tr>
         </thead>
         <tbody>
-          {!orders.length ? (
-            <tr>
-              <td colSpan={6}>No Orders</td>
+          {orders.map((order) => (
+            <tr key={order.id}>
+              <td>{order.id}</td>
+              <td>{order.event_name}</td>
+              <td>{order.price}</td>
+              <td>{order.item}</td>
+              <td>{order.customer}</td>
+              <td style={{ textAlign: "left", paddingLeft: "40px" }}>
+                {order.destination}
+              </td>
             </tr>
-          ) : (
-            orders.length &&
-            orders.map((order) => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.event_name}</td>
-                <td>{order.price}</td>
-                <td>{order.item}</td>
-                <td>{order.customer}</td>
-                <td style={{ textAlign: "left", paddingLeft: "40px" }}>
-                  {order.destination}
-                </td>
-              </tr>
-            ))
-          )}
+          ))}
         </tbody>
       </table>
+      {!orders.length && (
+        <div className={styles.NoOrder}>
+          <span>{`No${isFiltered ? " Matched" : ""} Orders`}</span>
+        </div>
+      )}
     </div>
   );
 }

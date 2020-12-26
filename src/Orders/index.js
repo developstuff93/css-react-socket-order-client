@@ -39,7 +39,7 @@ export default function Orders({ orders }) {
         updatePriceFilter={setFilterPrice}
         updateCurPage={setCurPage}
       />
-      <OrdersTable orders={renderableOrders} />
+      <OrdersTable orders={renderableOrders} isFiltered={filterPrice !== ""} />
       <TableController
         total={filteredOrders.length}
         curPage={curPage}

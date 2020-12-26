@@ -27,7 +27,7 @@ export default function FilterBar({ updatePriceFilter, updateCurPage, price }) {
         id="price-filter"
         type="number"
         onKeyPress={onKeyDown}
-        onChange={(e) => updateFilter(e.target.value)}
+        onChange={(e) => updateFilter(e.target.value.slice(0, 15))}
         value={price}
       />
       {price && <button onClick={() => updateFilter("")}>&times;</button>}
