@@ -12,13 +12,11 @@
 .Button {
   width: 32px;
   height: 32px;
-  border-radius: 50px;
-  color: rgba(0, 0, 0, 0.87);
-  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 50%;
   cursor: pointer;
   border: none;
   margin: 0 3px;
-  border: 1px solid $light-dark;
+  border: 1px solid $border-color;
   background-color: transparent;
   justify-content: center;
   display: flex;
@@ -28,7 +26,7 @@
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    background-color: $button-bg-color-hover;
   }
 
   &:disabled {
@@ -39,10 +37,10 @@
 }
 
 .Selected {
-  background-color: $main-button;
+  background-color: $button-bg-color-selected;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.12);
+    background-color: $button-bg-color-selected-hover;
   }
 }
 

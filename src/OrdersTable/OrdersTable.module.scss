@@ -4,12 +4,11 @@
   width: 100%;
   margin: 2rem 0;
   overflow: auto;
-  border: 1px solid $gray;
+  border: 1px solid $border-color;
   border-radius: 2px;
 
   @media screen and (max-width: $small) {
     margin: 1rem 0;
-    max-height: 402px;
   }
 }
 
@@ -23,14 +22,14 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    background-color: $light-gray;
+    background-color: $color-gray;
   }
 
   tr {
     height: 40px;
 
     &:not(:last-child) {
-      border-bottom: 1px solid $light-dark;
+      border-bottom: 1px solid $border-color;
     }
   }
 

@@ -1,9 +1,12 @@
 // color palette
-$white: #fff;
-$dark-white: #efefef;
-$gray: #444;
-$light-gray: #aaa;
-$light-dark: rgba(0, 0, 0, 0.23);
-$main-button: rgba(0, 0, 0, 0.08);
+$color-white: #fff;
+$color-gray: #aaa;
+$color-light-gray: #efefef;
 
+$border-color: rgba(0, 0, 0, 0.23);
+$button-bg-color-hover: rgba(0, 0, 0, 0.04);
+$button-bg-color-selected: rgba(0, 0, 0, 0.08);
+$button-bg-color-selected-hover: rgba(0, 0, 0, 0.12);
+
+// breakpoints
 $small: 480px;

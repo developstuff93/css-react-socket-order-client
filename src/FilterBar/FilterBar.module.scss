@@ -11,7 +11,7 @@
   }
 
   input {
-    border: 1px solid $light-dark;
+    border: 1px solid $border-color;
     border-radius: 3px;
     margin-left: 0.5rem;
     padding: 0.5rem;
@@ -29,8 +29,8 @@
     border-radius: 50%;
     padding: 0;
     cursor: pointer;
-    color: $light-gray;
-    background-color: $dark-white;
+    color: $color-gray;
+    background-color: $color-light-gray;
     font-size: 14px;
     display: flex;
     align-items: center;
