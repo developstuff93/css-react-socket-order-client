@@ -7,13 +7,7 @@ const KEY_CODE = {
   9: 57,
 };
 
-export default function FilterBar({
-  totalLength,
-  filteredLength,
-  price,
-  updatePriceFilter,
-  updateCurPage,
-}) {
+export default function FilterBar({ updatePriceFilter, updateCurPage, price }) {
   const onKeyDown = (e) => {
     const keyCode = e.which ? e.which : e.keyCode;
     if (keyCode < KEY_CODE[0] || keyCode > KEY_CODE[9]) {
@@ -28,21 +22,15 @@ export default function FilterBar({
 
   return (
     <div className={styles.Root}>
-      <div className={styles.FilterBar}>
-        <label htmlFor="price-filter">Search: </label>
-        <input
-          id="price-filter"
-          type="number"
-          onKeyPress={onKeyDown}
-          onChange={(e) => updateFilter(e.target.value)}
-          value={price}
-        />
-        {price && <button onClick={() => updateFilter("")}>&times;</button>}
-      </div>
-      <div className={styles.MetaInfo}>
-        <span>{price && `Matched Count: ${filteredLength} / `}</span>
-        <span>{`Total Count: ${totalLength}`}</span>
-      </div>
+      <label htmlFor="price-filter">Search: </label>
+      <input
+        id="price-filter"
+        type="number"
+        onKeyPress={onKeyDown}
+        onChange={(e) => updateFilter(e.target.value)}
+        value={price}
+      />
+      {price && <button onClick={() => updateFilter("")}>&times;</button>}
     </div>
   );
 }

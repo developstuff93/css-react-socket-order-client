@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 
 import OrdersTable from "../OrdersTable";
 import TableController from "../TableController";
-import FilterBar from "../FilterBar";
+import OrdersHeader from "../OrdersHeader";
 
 import styles from "./Orders.module.scss";
 
@@ -32,7 +32,7 @@ export default function Orders({ orders }) {
 
   return (
     <div className={styles.Root}>
-      <FilterBar
+      <OrdersHeader
         totalLength={orders.length}
         filteredLength={filteredOrders.length}
         price={filterPrice}

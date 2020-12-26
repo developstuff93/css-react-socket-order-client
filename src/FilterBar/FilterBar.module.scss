@@ -1,14 +1,6 @@
 @import "../GlobalStyles.scss";
 
 .Root {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.FilterBar {
   display: flex;
   align-items: center;
   position: relative;
@@ -43,11 +35,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-}
-
-.MetaInfo {
-  @media screen and (max-width: $small) {
-    width: 100%;
   }
 }
