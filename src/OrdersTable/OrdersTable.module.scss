@@ -31,6 +31,10 @@
     &:not(:last-child) {
       border-bottom: 1px solid $border-color;
     }
+
+    &:hover {
+      background-color: $button-bg-color-selected-hover;
+    }
   }
 
   td {
