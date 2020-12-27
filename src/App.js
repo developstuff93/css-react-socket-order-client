@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
 
 import Orders from "./Orders";
+import { SOCKET_API_ENDPOINT } from "./utils/constants";
 
 import styles from "./App.module.scss";
 
 function App() {
   const [newEvents, setNewEvents] = useState([]);
   const [orders, setOrders] = useState([]);
-  const ENDPOINT = "http://localhost:4000/";
 
   useEffect(() => {
-    const socket = io(ENDPOINT);
+    const socket = io(SOCKET_API_ENDPOINT);
     socket.on("connect", () => {
       console.log("Connected with socket server");
     });
